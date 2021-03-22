@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Example</title>
+</head>
+<body>
+<div id="xl_auth" style="width: 100%; height: 1000px"></div>
+        
+   <script type="application/javascript">
+      const s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "https://login-sdk.xsolla.com/latest/";
+      const head = document.getElementsByTagName("head")[0];
+      head.appendChild(s);
+      let xl;
+
+      s.addEventListener("load", function() {
+        xl = new XsollaLogin.Widget({
+          // projectId: "6f740e13-8628-11eb-bc85-42010aa80004",
+           callbackUrl: "http://localhost:8080/token",
+          // preferredLocale: "en_US"
+      projectId: '6f740e13-8628-11eb-bc85-42010aa80004',
+      preferredLocale: 'en_US',
+      clientId: '320',
+      responseType: 'code',
+      state: 'CUSTOM_STATE',
+      //redirectUri: 'http://localhost:8080/token',
+      scope: 'offline'
+        });
+
+       
+        xl.mount("xl_auth");
+        xl.on(xl.events.Close, () => {
+          xl.close();
+        });
+
+      });
+      
+      // function for opening a widget by button
+      /* 
+        function openWidget() {
+          xl.open();
+        } 
+      */
+   </script>
+</body>
+</html>
